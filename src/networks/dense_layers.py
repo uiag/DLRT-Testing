@@ -14,17 +14,18 @@ class Linear(keras.layers.Layer):
 
     def build_model(self):
         if self.regularizer == "L2":
-            self.w = self.add_weight(shape=(self.input_dim, self.units), initializer="random_normal", regularizer=keras.regularizers.L2(self.regularizer_amount[0]), trainable=True, )
+            self.w = self.add_weight(shape=(self.input_dim, self.units), initializer="random_normal", regularizer=tf.keras.regularizers.L2(float(self.regularizer_amount[0])), trainable=True, )
             self.b = self.add_weight(shape=(self.units,), initializer="random_normal", trainable=True)
-        if self.regularizer == "L1":
-            self.w = self.add_weight(shape=(self.input_dim, self.units), initializer="random_normal", regularizer=keras.regularizers.L1(self.regularizer_amount[0]), trainable=True, )
+        elif self.regularizer == "L1":
+            self.w = self.add_weight(shape=(self.input_dim, self.units), initializer="random_normal", regularizer=keras.regularizers.l1(self.regularizer_amount[0]), trainable=True, )
             self.b = self.add_weight(shape=(self.units,), initializer="random_normal", trainable=True)
-        if self.regularizer == "L1L2":
-            self.w = self.add_weight(shape=(self.input_dim, self.units), initializer="random_normal", regularizer=keras.regularizers.L1L2(self.regularizer_amount[0], self.regularizer_amount[1]), trainable=True, )
+        elif self.regularizer == "L1L2":
+            self.w = self.add_weight(shape=(self.input_dim, self.units), initializer="random_normal", regularizer=keras.regularizers.l1l2(self.regularizer_amount[0], self.regularizer_amount[1]), trainable=True, )
             self.b = self.add_weight(shape=(self.units,), initializer="random_normal", trainable=True)
         else:
             self.w = self.add_weight(shape=(self.input_dim, self.units), initializer="random_normal", trainable=True, )
             self.b = self.add_weight(shape=(self.units,), initializer="random_normal", trainable=True)
+        super(Linear, self).build(self.input_dim)
 
     def call(self, inputs):
         return tf.matmul(inputs, self.w) + self.b

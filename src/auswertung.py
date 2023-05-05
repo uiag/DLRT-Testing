@@ -9,16 +9,31 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import copy
+from matplotlib.colors import LogNorm
 
 FOLDER_NAME = "SGDTestDim1-500ep2000batch2048lr1e-3Noise20Dataset10"
 SHOW_ALL_DIM = False
-SHOW_SINGLE_DIM = 150
+SHOW_SINGLE_DIM = 250
 SHOW_SINGLE_EPOCH = 150
 SHOW_ALL_EPOCH = False
 MARK_STD_ABOVE = 0.075
+LOG_SCALE_X_Y_Z = [False, False, False]
 
-def heatmap2d(arr: np.ndarray, title):
-    plt.imshow(arr, cmap='plasma')
+plt.rcParams["figure.figsize"] = (16,9)
+
+def heatmap2d(arr: np.ndarray, title, log_scale):
+    if log_scale[2]:
+        plt.imshow(arr, cmap='plasma', norm=LogNorm())
+    else:
+        plt.imshow(arr, cmap='plasma')
+    if log_scale[1]:
+        plt.ylim([500,1])
+        plt.yscale('log', base=1.013)
+        plt.yticks([2,4,8,16,32,64,128,256,500],[2,4,8,16,32,64,128,256,500])
+    if log_scale[0]:
+        plt.xlim([1,250])
+        plt.xscale('log', base=1.022)
+        plt.xticks([2,4,8,16,32,64,128,250],[2,4,8,16,32,64,128,250])
     plt.title(title)
     plt.ylabel("Width")
     plt.xlabel("Epochs")
@@ -131,8 +146,8 @@ print("Maximum standard deviation: " + str(maxDev) + " at Dim " + str(maxy+1) + 
 print("Minimum standard deviation: " + str(minDev) + " at Dim " + str(miny+1) + " and epoch " + str(minx+1))
 print("Quartile: ", np.quantile(deviationsList, q = np.arange(0.25, 1.25, 0.25)))
 
-heatmap2d(allTests[0], "Test Error")
-heatmap2d(allTrains[0], "Train Error")
+heatmap2d(allTests[0], "Test Error", LOG_SCALE_X_Y_Z)
+heatmap2d(allTrains[0], "Train Error", LOG_SCALE_X_Y_Z)
 
 if SHOW_ALL_DIM == True:
     for i in range(len(allTests[0])):
@@ -180,14 +195,14 @@ if SHOW_SINGLE_EPOCH != 0:
         plt.title("Epoch " + str(SHOW_SINGLE_EPOCH))
         plt.show()
 
-heatmap2d(allDeviations, "Standard Deviation")
+heatmap2d(allDeviations, "Standard Deviation", LOG_SCALE_X_Y_Z)
 for h in range(len(allDeviations)):
     for i in range(len(allDeviations[h])):
         if allDeviations[h][i] > MARK_STD_ABOVE:
             allDeviations[h][i] = 1
         else:
             allDeviations[h][i] = 0
-heatmap2d(allDeviations, "Standard Deviation above " + str(MARK_STD_ABOVE))
+heatmap2d(allDeviations, "Standard Deviation above " + str(MARK_STD_ABOVE), LOG_SCALE_X_Y_Z)
 
 
 

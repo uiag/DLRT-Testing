@@ -10,7 +10,6 @@ from os import path, makedirs
 
 from random import randint, sample
 
-
 def train(load_model=0, dim_layer=256, epochs=250, batch_size=256, name="dense_weights", input_dim=784, output_dim=10, optimizerName="Adam",
           learning_rate=1e-3, datasetSize=1, noise=0, dataset="mnist", regularizer=None, regularizer_amount=[0, 0]):
     # specify training
@@ -61,6 +60,7 @@ def train(load_model=0, dim_layer=256, epochs=250, batch_size=256, name="dense_w
 
     # Reserve 10,000 samples for validation.
     val_size = 10000
+    
     x_val = x_train[-val_size:]
     y_val = y_train[-val_size:]
     x_train = x_train[:-val_size]
