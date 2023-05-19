@@ -20,7 +20,7 @@ DIMENSIONS = [1, 501]
 EPOCHS = 250
 BATCH_SIZE = 256
 LEARNING_RATE = 1e-3
-DATASET_SIZE = 0.1
+DATASET_SIZE = 1
 NOISE = 0.2
 REGULARIZER = "L2"
 REGULARIZER_AMOUNT = [0.01, 0.01]
@@ -28,6 +28,9 @@ OPTIMIZER = "Adam"
 DATASET = "mnist"
 INPUT_DIM = 784
 OUTPUT_DIM = 10
+
+VAL_SIZE=10000
+VAL_FULL=False
 
 def main():
     if tf.test.gpu_device_name():
@@ -54,7 +57,7 @@ def main():
                 name += "Run" + str(k)
                 print("\nDurchgang " + str(k) + " Dimension " + str(i) + "\n")
                 startTime = datetime.datetime.now()
-                mnist_reference.train(load_model=LOAD_MODEL, dim_layer=i, epochs=EPOCHS, batch_size=BATCH_SIZE, name=name, input_dim=INPUT_DIM, output_dim=OUTPUT_DIM, optimizerName=OPTIMIZER, learning_rate=LEARNING_RATE, datasetSize=DATASET_SIZE, noise=NOISE, dataset=DATASET, regularizer=REGULARIZER, regularizer_amount=REGULARIZER_AMOUNT)
+                mnist_reference.train(load_model=LOAD_MODEL, dim_layer=i, epochs=EPOCHS, batch_size=BATCH_SIZE, name=name, input_dim=INPUT_DIM, output_dim=OUTPUT_DIM, optimizerName=OPTIMIZER, learning_rate=LEARNING_RATE, datasetSize=DATASET_SIZE, noise=NOISE, dataset=DATASET, regularizer=REGULARIZER, regularizer_amount=REGULARIZER_AMOUNT, val_size=VAL_SIZE, val_full=VAL_FULL)
                 endTime = datetime.datetime.now()
                 timeDelta = endTime-startTime
                 print("\nDauer: ", timeDelta)
@@ -75,7 +78,7 @@ def main():
                 name += "Run" + str(k)
                 print("\nDurchgang " + str(k) + " Dimension " + str(i) + "\n")
                 startTime = datetime.datetime.now()
-                mnist_DLRT_fr.train(start_rank=RANKS[0], load_model=LOAD_MODEL, dim_layer=i, epochs=EPOCHS, batch_size=BATCH_SIZE, name=name, input_dim=INPUT_DIM, output_dim=OUTPUT_DIM, optimizerName=OPTIMIZER, learning_rate=LEARNING_RATE, datasetSize=DATASET_SIZE, noise=NOISE, dataset=DATASET)
+                mnist_DLRT_fr.train(start_rank=RANKS[0], load_model=LOAD_MODEL, dim_layer=i, epochs=EPOCHS, batch_size=BATCH_SIZE, name=name, input_dim=INPUT_DIM, output_dim=OUTPUT_DIM, optimizerName=OPTIMIZER, learning_rate=LEARNING_RATE, datasetSize=DATASET_SIZE, noise=NOISE, dataset=DATASET, val_size=VAL_SIZE, val_full=VAL_FULL)
                 endTime = datetime.datetime.now()
                 timeDelta = endTime-startTime
                 print("\nDauer: ", timeDelta)
@@ -96,7 +99,7 @@ def main():
                 name += "Run" + str(k)
                 print("\nDurchgang " + str(k) + " Rank " + str(i) + "\n")
                 startTime = datetime.datetime.now()
-                mnist_DLRT_fr.train(start_rank=i, load_model=LOAD_MODEL, dim_layer=DIMENSIONS[0], epochs=EPOCHS, batch_size=BATCH_SIZE, name=name, input_dim=INPUT_DIM, output_dim=OUTPUT_DIM, optimizerName=OPTIMIZER, learning_rate=LEARNING_RATE, datasetSize=DATASET_SIZE, noise=NOISE, dataset=DATASET)
+                mnist_DLRT_fr.train(start_rank=i, load_model=LOAD_MODEL, dim_layer=DIMENSIONS[0], epochs=EPOCHS, batch_size=BATCH_SIZE, name=name, input_dim=INPUT_DIM, output_dim=OUTPUT_DIM, optimizerName=OPTIMIZER, learning_rate=LEARNING_RATE, datasetSize=DATASET_SIZE, noise=NOISE, dataset=DATASET, val_size=VAL_SIZE, val_full=VAL_FULL)
                 endTime = datetime.datetime.now()
                 timeDelta = endTime-startTime
                 print("\nDauer: ", timeDelta)

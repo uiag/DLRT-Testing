@@ -11,7 +11,7 @@ import os
 import copy
 from matplotlib.colors import LogNorm
 
-FOLDER_NAME = "SGDTestDim1-500ep2000batch2048lr1e-3Noise20Dataset10"
+FOLDER_NAME = "TestDim491-501ep250batch256lr0.001Noise20.0Dataset10.0RegL1-0.1Run1"
 SHOW_ALL_DIM = False
 SHOW_SINGLE_DIM = 250
 SHOW_SINGLE_EPOCH = 150

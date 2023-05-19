@@ -11,7 +11,7 @@ from os import path, makedirs
 from random import randint, sample
 
 def train(load_model=0, dim_layer=256, epochs=250, batch_size=256, name="dense_weights", input_dim=784, output_dim=10, optimizerName="Adam",
-          learning_rate=1e-3, datasetSize=1, noise=0, dataset="mnist", regularizer=None, regularizer_amount=[0, 0]):
+          learning_rate=1e-3, datasetSize=1, noise=0, dataset="mnist", regularizer=None, regularizer_amount=[0, 0], val_size=10000, val_full=True):
     # specify training
     
     filename = name
@@ -57,14 +57,13 @@ def train(load_model=0, dim_layer=256, epochs=250, batch_size=256, name="dense_w
         x_train = np.reshape(x_train, (-1, input_dim))
         x_test = np.reshape(x_test, (-1, input_dim))
         
-
-    # Reserve 10,000 samples for validation.
-    val_size = 10000
     
+    # Reserve 10,000 samples for validation.
     x_val = x_train[-val_size:]
     y_val = y_train[-val_size:]
-    x_train = x_train[:-val_size]
-    y_train = y_train[:-val_size]
+    if val_full:
+        x_train = x_train[:-val_size]
+        y_train = y_train[:-val_size]
     
     
     #changed smaller dataset
@@ -72,13 +71,14 @@ def train(load_model=0, dim_layer=256, epochs=250, batch_size=256, name="dense_w
         train_len = int(len(x_train)*datasetSize)
         val_len = int(len(x_val)*datasetSize)
         test_len = int(len(x_test)*datasetSize)
-        print("\nSize Dataset: " + str(train_len) + ", " + str(val_len) + ", " + str(test_len) + "\n")
         x_train = x_train[:train_len]
         y_train = y_train[:train_len]
         x_val = x_val[:val_len]
         y_val = y_val[:val_len]
         x_test = x_test[:test_len]
         y_test = y_test[:test_len]
+    
+    print("\nSize Dataset: " + str(len(x_train)) + ", " + str(len(x_val)) + ", " + str(len(x_test)) + "\n")
     
     #changed label noise
     if noise != 0:
