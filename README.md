@@ -1,4 +1,4 @@
-## [On the computational and parameter efficiency of Low Rank Neural Networks]
+## On the computational and parameter efficiency of Low Rank Neural Networks
 
 Code supplement for all experiments of the Bachelor's thesis.
 This repository started as a copy of the original repository for below mentioned paper, which isn't publicly available anymore. I added the following files for my research:
@@ -15,7 +15,7 @@ Furthermore I added the folders "finishedTests", which contains raw data for all
 The naming of the test cases was done by adding different text parts together dependent on the parameters used:
 
 	method		    	descent algorithm		dimensions		epochs		batch size		learning rate		noise		dataset-size		regularization
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 	"DLRT(Rank[x-y])"   	"SGD"				"TestDim[x-y]"		"ep[x]"		"batch[x]"		"lr[x]"			"Noise[x]"	"Dataset[x]"		"L1L2Reg[x]"
 	""			""															""		""			"L1Reg[x]"
 																								"Reg[x]"
