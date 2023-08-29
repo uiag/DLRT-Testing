@@ -1,7 +1,7 @@
 ## On the computational and parameter efficiency of Low Rank Neural Networks
 
 Code supplement for all experiments of the Bachelor's thesis.
-This repository started as a copy of the original repository for below mentioned paper, which isn't publicly available anymore. I added the following files for my research:
+This repository started as a copy of the original repository for below mentioned paper. I added the following files for my research:
  - TestMatrix.py (main testing script, which is able to run a lot of different parameters)
  - evaluation.py (used to generate most of the graphs in the thesis)
  - evaluationMultiple.py (used to generate graphs with multiple tests like Figure 3.11)
