@@ -8,6 +8,7 @@ This repository started as a copy of the original repository for below mentioned
  - evaluationRain.py (used to generate Figure 3.13)
  - evaluationRainFullSet.py (used to generate Figure 3.12)
  - further_graphics.py (used to generate Figures 1.1, 1.2 and 2.4)
+ - dataFigure1.xlsx (modified data for Figure 1.2 - original data under 'https://epochai.org/data/pcd')
  - rename.py (used to rename some data)
 
 Additionally I made some minor changes to "mnist_DLRT.py", "mnist_DLRT_fr.py", "mnist_reference.py" and "dense_layers.py" to make some of my experiments possible. For example I added the possibility of regularization.
