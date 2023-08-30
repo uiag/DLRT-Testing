@@ -8,13 +8,11 @@ import openpyxl
 import matplotlib.pyplot as plt
 import numpy as np
 
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator
 
 plt.rcParams["figure.figsize"] = (10,14.14)
 plt.rcParams.update({'font.size': 10})
 
-file = openpyxl.load_workbook('data.xlsx')
+file = openpyxl.load_workbook('dataFigure1.xlsx')
 sheet = file["dataAll"]
 
 i = 2
