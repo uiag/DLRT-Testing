@@ -11,7 +11,7 @@ This repository started as a copy of the original repository for below mentioned
  - dataFigure1.xlsx (modified data for Figure 1.2 - original data under 'https://epochai.org/data/pcd')
  - rename.py (used to rename some data)
 
-I added the folder "graphics", which includes all the figures used for the thesis. In "CreditRetirement_GSM19660.pdf" one can find the carbon offset certificate.
+I added the folder "graphics", which includes all the figures used for the thesis. In "CreditRetirement_GSM19660.pdf" one can find the carbon offset certificate. "Thesis_Jakob_Maisch.pdf" contains the thesis itself.
 
 Additionally I made some minor changes to "mnist_DLRT.py", "mnist_DLRT_fr.py", "mnist_reference.py" and "dense_layers.py" to make some of my experiments possible. For example I added the possibility of regularization.
 
